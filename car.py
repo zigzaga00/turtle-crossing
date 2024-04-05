@@ -10,11 +10,12 @@ COLORS = [
     "purple"
 ]
 START_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 5
 
 class Car:
     def __init__(self):
         self.cars = []
+        self.car_speed = START_MOVE_DISTANCE
 
     def create_car(self):
         car_chance = randint(1, 6)
@@ -29,4 +30,7 @@ class Car:
 
     def car_move(self):
         for car in self.cars:
-            car.fd(START_MOVE_DISTANCE)
+            car.fd(self.car_speed)
+
+    def next_level(self):
+        self.car_speed += MOVE_INCREMENT

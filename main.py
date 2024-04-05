@@ -24,8 +24,14 @@ screen.onkey(sam.up, "Up")
 game_on = True
 while game_on:
     sleep(0.1)
+    screen.update()
     car_contoller.create_car()
     car_contoller.car_move()
-    screen.update()
+    for car in car_contoller.cars:
+        if car.distance(sam) <= 20:
+            game_on = False
+    if sam.player_win():
+        car_contoller.next_level()
+        sam.goto(0, -280)
 
 screen.exitonclick()
